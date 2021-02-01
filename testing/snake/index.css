@@ -18,7 +18,7 @@ body {
   background-color: lime;
 }
 
-.tails {
+#tails {
     background-color: palegoldenrod;
 }
 
@@ -27,4 +27,8 @@ body {
   left: 20px;
   top: 20px;
 }
+
+#apple {
+    background-color: red;
+    }
 

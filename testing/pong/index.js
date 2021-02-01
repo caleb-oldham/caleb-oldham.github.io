@@ -10,8 +10,7 @@ function runProgram(){
   // Constant Variables
   var FRAMES_PER_SECOND_INTERVAL = 1000 / 60;
     //Inputs
-    var KEY =
-  {
+    var KEY = {
     "UP": 87,
     "DOWN": 83,
 
@@ -27,8 +26,7 @@ function runProgram(){
   var points2 = 0;
   
   // Game Item Objects
-  function CreateGameItem($elementId, x, y, speedX, speedY, width, height)
-{
+  function CreateGameItem($elementId, x, y, speedX, speedY, width, height){
   var gameItem = {};
   gameItem.id = $elementId;
   gameItem.x = x;
@@ -37,7 +35,7 @@ function runProgram(){
   gameItem.speedY = speedY;
   gameItem.width =  width;
   gameItem.height =  height;
-  
+  return gameItem;
 }
   //Paddle1
     var paddle = CreateGameItem("paddle", 10, 0, 0, 0, 30, 150);
@@ -70,8 +68,8 @@ function runProgram(){
 
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
-  $(document).on('keydown', handleKeyDown)
-  $(document).on('keyup', handleKeyUp)                           // change 'eventType' to the type of event you want to handle
+  $(document).on('keydown', handleKeyDown);
+  $(document).on('keyup', handleKeyUp);                           // change 'eventType' to the type of event you want to handle
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -82,6 +80,8 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {
+    // move ball
+    repositionBall();
     //Paddle things
     repositionPaddle();
     repositionPaddle2();
@@ -194,8 +194,9 @@ function runProgram(){
     obj2.left = obj2.x;
     obj2.top = obj2.y;
     //if the objs collide
-    if(obj1.right > obj2.left && obj1.left < obj2.right && obj1.top > obj2.botom && obj1.botom < obj2.top)
+    if((obj1.right > obj2.left) && (obj1.left < obj2.right) && (obj1.top < obj2.botom) && (obj1.botom > obj2.top))
     {
+       
         ball.speedY = ball.speedY * speedIncrese;
         ball.speedX = ball.speedX * speedIncrese;
         ball.speedX = -ball.speedX;

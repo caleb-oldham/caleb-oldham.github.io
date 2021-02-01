@@ -110,7 +110,7 @@ function runProgram() {
         } if (keycode === KEY.DOWN) {       // down
             console.log("down pressed");
             playerOne.speed.down = 5;
-         if (keycode === KEY.RIGHT) {      // right
+        }if (keycode === KEY.RIGHT) {      // right
             console.log("right pressed");
             playerOne.speed.right = 5;
         }
@@ -136,7 +136,7 @@ function runProgram() {
         console.log(keycode);
 
         ///// PLAYER ONE KEYUPS \\\\\
-        if (keyCode === KEY.UP) {           // up
+        if (keycode === KEY.UP) {           // up
             console.log("up released");
             playerOne.speed.up = 0;
         } if (keycode === KEY.LEFT) {       // left
@@ -277,10 +277,10 @@ function runProgram() {
     }
 
     function repositionGameItem() {
-        playerOne.positionX = playerOne.speedX; // update the position of the box along the x-axis
-        playerOne.positionY = playerOne.speedY; // update the position of the box along the y-axis
-        playerTwo.positionX = playerTwo.speedX; // update the position of the box along the x-axis
-        playerTwo.positionY = playerTwo.speedY; // update the position of the box along the y-axis
+        playerOne.positionX += playerOne.speedX; // update the position of the box along the x-axis
+        playerOne.positionY += playerOne.speedY; // update the position of the box along the y-axis
+        playerTwo.positionX += playerTwo.speedX; // update the position of the box along the x-axis
+        playerTwo.positionY += playerTwo.speedY; // update the position of the box along the y-axis
     }
 
     function redrawGameItem() {

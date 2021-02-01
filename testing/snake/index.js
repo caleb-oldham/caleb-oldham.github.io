@@ -306,7 +306,7 @@ function runProgram() {
             borderSide = "none";
         }
         // if the head hits the tail, end the game
-        for (var i = 1; i < snakeArray.length; i++) {
+        for (var i = 3; i < snakeArray.length; i++) {
             if (inCollision(head, snakeArray[i])) {
                 collide("tail");
             }
@@ -355,7 +355,7 @@ function runProgram() {
 
     function inCollision(obj1, obj2) {
         // if obj1 is in the same spot as obj2, return true
-        if (obj1.x === obj2.x || obj1.y === obj2.y) {
+        if (obj1.x === obj2.x && obj1.y === obj2.y) {
             return true;
         } else {
             return false;
@@ -408,22 +408,19 @@ function runProgram() {
 
     function createNewBody() {
         // create a new id for the body
-        var bodyId = 'midBody' + (snakeArray.length - 1);
+        var bodyId = 'midBody' + (snakeArray.length);
         // create a new div for the body
-        var $newBody = $("<div>")
-            .appendTo('#board')
+        $("<div>")
             .addClass('gameItem')
             .addClass('tails')
             .attr("id", bodyId)
-            .css("left", snakeArray[0].x)
-            .css("top", snakeArray[0].y)
-            .css("background-color", "orange");
+            .css("background-color", "orange")
+            .appendTo('#board');
         // store the new div in a variable
-        $newBody = createGameObject(
-            snakeArray[0].column,
-            snakeArray[0].row,
-            null, null, null,
-            '#' + bodyId);
+        var $newBody = createGameObject(
+            snakeArray[snakeArray.length-1].column,
+            snakeArray[snakeArray.length-1].row,
+           0, 0, null, '#' + bodyId);
         // push the new body into snakeArray
         snakeArray.push($newBody);
     }
@@ -440,7 +437,7 @@ function runProgram() {
         redrawGameItem(apple);
     }
 
-    function redrawgameitem(gameItem) {
+    function redrawGameItem(gameItem) {
         $(gameItem.id).css("left", gameItem.x);
         $(gameItem.id).css("top", gameItem.y);
     }
